@@ -23,6 +23,8 @@ module.exports = {
 		'react-refresh',
 	],
 	rules: {
+		'@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+		"@typescript-eslint/consistent-type-definitions": "off",
 		'react-refresh/only-export-components': [
 			'warn',
 			{ allowConstantExport: true },
@@ -32,7 +34,7 @@ module.exports = {
 		'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
 		'no-unused-vars': 'error',
 		'no-multiple-empty-lines': 'error',
-		'react/react-in-jsx-scope': 'off'
+		'react/react-in-jsx-scope': 'off',
 	},
 	overrides: [
 		{
