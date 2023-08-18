@@ -10,7 +10,7 @@
     "format": "prettier --write --cache .",
     "lint": "eslint src/**/*.{ts,tsx} --fix",
     "preview": "vite preview",
-    "deploy": "gh-pages -d build"
+    "deploy": "yarn build && gh-pages -d build"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.32.6",
