@@ -25,23 +25,24 @@ module.exports = {
 	rules: {
 		'react-refresh/only-export-components': [
 			'warn',
-			{allowConstantExport: true},
+			{ allowConstantExport: true },
 		],
 		quotes: ['error', 'single'],
 		'no-duplicate-imports': 'error',
-		'no-console': ['warn', {allow: ['warn', 'error', 'info']}],
+		'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
 		'no-unused-vars': 'error',
 		'no-multiple-empty-lines': 'error',
+		'react/react-in-jsx-scope': 'off'
 	},
 	overrides: [
 		{
+			files: ['.eslintrc.{js,cjs}'],
+			excludedFiles: '*.ts,*.tsx', // 추가된 줄
 			env: {
 				node: true,
 			},
-			files: [
-				'.eslintrc.{js,cjs}',
-			],
 			parserOptions: {
+				project: null,
 				sourceType: 'script',
 			},
 		},
