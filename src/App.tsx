@@ -6,7 +6,7 @@ function App() {
 
 		<QueryClientProvider client={queryClient}>
 			<ReactQueryDevtools initialIsOpen={false} position='bottom-right' />
-			<h1>배포 언제 되나!!</h1>
+			<h1>배포 언제 되나!!ㄴ</h1>
 		ㅎ</QueryClientProvider>
 
 	);
