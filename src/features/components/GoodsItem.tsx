@@ -1,65 +1,60 @@
 import styled from 'styled-components';
 import {HeartIcon} from '../Icons';
+import {kiloFormatter} from '../utils';
 
-export const GoodsItem = () => (
-	<StyledWrapper>
-		<StyledContainer>
-			<StyledThumb>
-				<StyledImg src='https://via.placeholder.com/150' />
-				<StyledHeartIcon />
-			</StyledThumb>
-			<StyledBox>
-				<StyledLineText>
-                        브랜드 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명
-				</StyledLineText>
-				<StyledText>
-					<StyledPercent>48%</StyledPercent>
-					<StyledPrice>48,000원</StyledPrice>
-				</StyledText>
-				<StyledFlag>무료배송</StyledFlag>
-				<StyledText>
-					<StyledSpan>좋아요 4.7k</StyledSpan>
-					<StyledSpan>리뷰 128</StyledSpan>
-				</StyledText>
-			</StyledBox>
-		</StyledContainer>
+type Badge = string;
 
-		<StyledContainer>
-			<StyledThumb>
-				<StyledImg src='https://via.placeholder.com/150' />
-				<StyledHeartIcon />
-			</StyledThumb>
-			<StyledBox>
-				<StyledLineText>
-                        브랜드 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명 상품명
-				</StyledLineText>
-				<StyledText>
-					<StyledPercent>48%</StyledPercent>
-					<StyledPrice>48,000원</StyledPrice>
-				</StyledText>
-				<StyledFlag>무료배송</StyledFlag>
-				<StyledText>
-					<StyledSpan>좋아요 4.7k</StyledSpan>
-					<StyledSpan>리뷰 128</StyledSpan>
-				</StyledText>
-			</StyledBox>
-		</StyledContainer>
-	</StyledWrapper>
+interface PopularGoods {
+	id: number;
+	name: string;
+	likeCount: number;
+	reviewsCount: number;
+	price: number;
+	priceOriginal: number;
+	discountRate: number;
+	isDiscounted: boolean;
+	brand: string;
+	picture: string;
+	badges: Badge[];
+}
+interface GoodsItemProps {
+	popularGoodsData: PopularGoods[];
+}
+export const GoodsItem = ({popularGoodsData}: GoodsItemProps) => (
+	<>
+		{
+			popularGoodsData.map(item => (
+				<StyledWrapper key={item.name}>
+					<StyledThumb>
+						<StyledImg src={`https://usercontents-d.styleshare.io/images/${item.picture}/256x256`}/>
+						<StyledHeartIcon />
+					</StyledThumb>
+					<StyledBox>
+						<StyledLineText>{item.brand}{' '}{item.name}</StyledLineText>
+						<StyledText>
+							{item.isDiscounted && <StyledPercent>{item.discountRate}%</StyledPercent>}
+							<StyledPrice>{item.price}원</StyledPrice>
+						</StyledText>
+						{item.badges?.map((badge, index) => (<StyledFlag key={index}>{badge}</StyledFlag>),
+						)}
+						<StyledText>
+							<StyledSpan>좋아요 {kiloFormatter(item.likeCount)}</StyledSpan>
+							<StyledSpan>리뷰 {item.reviewsCount}</StyledSpan>
+						</StyledText>
+					</StyledBox>
+				</StyledWrapper>
+			))
+		}
+	</>
 );
 
 const StyledWrapper = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    padding: 16px;
+    border: 1px solid #f5f5f5;
+    
 `;
-const StyledContainer = styled.div`
-  
-`;
-
 const StyledThumb = styled.div`
     position: relative;
-    width: 100%;
+    width:auto;
     margin-bottom: 8px;
 `;
 
@@ -71,7 +66,7 @@ const StyledImg = styled.img`
 `;
 
 const StyledHeartIcon = styled(HeartIcon)`
-    background-color: blue;
+    background-color: lightblue;
     border: none;
     font-size: 20px;
     cursor: pointer;
@@ -81,7 +76,7 @@ const StyledHeartIcon = styled(HeartIcon)`
 `;
 
 const StyledBox = styled.div`
-  border: 1px solid #ccc;
+  
 `;
 
 const StyledText = styled.div`
@@ -110,6 +105,7 @@ const StyledFlag = styled.span`
     background-color: #f5f5f5;
     border-radius: 4px;
     padding: 4px 8px;
+    margin-right: 8px;
 `;
 
 const StyledSpan = styled.span`

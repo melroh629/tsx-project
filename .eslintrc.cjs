@@ -31,10 +31,11 @@ module.exports = {
 		],
 		quotes: ['error', 'single'],
 		'no-duplicate-imports': 'error',
-		'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
+		'no-console': "off",
 		'no-unused-vars': 'error',
 		'no-multiple-empty-lines': 'error',
 		'react/react-in-jsx-scope': 'off',
+		"@typescript-eslint/consistent-type-definitions": "off"
 	},
 	overrides: [
 		{
